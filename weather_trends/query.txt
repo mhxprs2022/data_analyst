@@ -1,0 +1,18 @@
+select year, city, country, avg_temp,
+	AVG(avg_temp) OVER(order by year) as sf_moving_avg_temp
+from city_data
+where city IN ('San Francisco')
+order by year asc
+
+
+select year, city, country, avg_temp,
+	AVG(avg_temp) OVER(order by year) as lv_moving_avg_temp
+from city_data
+where city IN ('Las Vegas')
+order by year asc
+
+
+select year, avg_temp,
+	AVG(avg_temp) OVER(order by year) as global_moving_avg_temp
+from global_data
+order by year asc
