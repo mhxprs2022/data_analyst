@@ -1,0 +1,42 @@
+---
+title: "Explore Weather Trends"
+author: "Christopher Hu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Explore Weather Trends for San Francisco, Las Vegas, and compare to Global Weather trend
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(plotly)
+
+colors <- c("Global" = "blue", "San Francisco" = "orange", "Las Vegas" = "red")
+
+# 4 data frames
+results_moving_avg_global   <- read_csv("./results_global_moving_average.csv")
+result_moving_avg_SF        <- read_csv("./results_sf_moving_average.csv")
+result_moving_avg_LV        <- read_csv("./results_lv_moving_average.csv")
+
+ggplotly( 
+ggplot() + 
+  geom_line(data = results_moving_avg_global, 
+            mapping = aes(x = year, y = global_moving_avg_temp, color = "Global")) +
+  geom_line(data = result_moving_avg_SF, 
+            mapping = aes(x = year, y = sf_moving_avg_temp, color = "San Francisco")) +
+  geom_line(data = result_moving_avg_LV, 
+            mapping = aes(x = year, y = lv_moving_avg_temp, color = "Las Vegas")) + 
+  labs(X = "year", 
+       y = "temperature in run_avergage", 
+       title = "Comparison of global temp trend vs Las Vegas and San Francisco temp trends",
+       color = "Location") +
+  scale_color_manual(values = colors)
+)
+
+```
+
+
