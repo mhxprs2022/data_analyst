@@ -1,2 +1,29 @@
 debugging toolkit that allows to modify potential error messages according to need.
     https://jakevdp.github.io/PythonDataScienceHandbook/01.06-errors-and-debugging.html
+
+=======================================================================================================================
+Your simulations is good in part II 2. h) Keep in mind that using for loops is computationally very expensive as this is only basic python functionality, and that when possible a binomial distribution is preferred over bootstrapping, as a lightweight methodology.
+--------------------------------------------------------------------------------------------------------------------------------
+bootstrapping:
+p_diffs = []
+for _ in range(10000):
+    new_page_converted = np.random.choice(treatment_df.converted, n_new, replace=True)
+    old_page_converted = np.random.choice(control_df.converted, n_old, replace=True)
+    pp_new = new_page_converted.mean()
+    pp_old = old_page_converted.mean()
+    p_diffs.append(pp_new - pp_old)
+
+
+In regards to the for loop It is always better to use specifically designed libraries which are built in low-level languages and help you write more efficient and stable code.
+
+In this case, we better exploit numpy, which is written in C and C++ and is more than 100x faster than a standard python calculation, and further we can deploy the following method to act more efficiently:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+broadcasting:
+p_diffs = []
+new_converted_simulation = np.random.binomial(n_new, p_new, 10000)/n_new
+old_converted_simulation = np.random.binomial(n_old, p_old, 10000)/n_old
+p_diffs = new_converted_simulation - old_converted_simulation
+The division by n_new happens for each item due to underlying python functionality broadcasting, which is well explained here:
+        https://numpy.org/doc/stable/user/basics.broadcasting.html
+        
+        
