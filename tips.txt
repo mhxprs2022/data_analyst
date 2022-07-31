@@ -1,0 +1,2 @@
+debugging toolkit that allows to modify potential error messages according to need.
+    https://jakevdp.github.io/PythonDataScienceHandbook/01.06-errors-and-debugging.html
