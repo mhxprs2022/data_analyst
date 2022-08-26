@@ -1,5 +1,11 @@
 debugging toolkit that allows to modify potential error messages according to need.
     https://jakevdp.github.io/PythonDataScienceHandbook/01.06-errors-and-debugging.html
+    
+8/26/2022 - Jupyter debugging tips
+    https://chrieke.medium.com/jupyter-tips-and-tricks-994fdddb2057
+    
+How to make nevigation easier in jupyter notebook
+    https://python-markdown.github.io/extensions/toc/
 
 =======================================================================================================================
 Your simulations is good in part II 2. h) Keep in mind that using for loops is computationally very expensive as this is only basic python functionality, and that when possible a binomial distribution is preferred over bootstrapping, as a lightweight methodology.
